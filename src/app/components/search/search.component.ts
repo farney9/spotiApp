@@ -26,6 +26,4 @@ export class SearchComponent {
                   this.isLoading = false;
                 })
   }
-    
-
 }
