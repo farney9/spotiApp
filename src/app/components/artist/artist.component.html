@@ -1,0 +1,32 @@
+<app-loading *ngIf="isLoadingArtist"></app-loading>
+<div class="animate__animated animate__rubberBand">
+    <div  *ngIf="!isLoadingArtist" class="jumbotron jumbotron-fluid jumbotron-image" style="background-image: url({{artista.images|noimage}});">
+        <div class="container content">
+            <h1 class="display-4">{{artista.name}}</h1>
+            <p class="lead">
+                <a class="text-white font-weight-bold" [href]="artista.external_urls.spotify" target="_blank">
+                    Informaciónn del artista
+                </a>
+            </p>
+            <div class="float-md-right">
+                <a routerLink="/search" class="btn btn-success">Regresar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<h2>Populares</h2>
+<div class="table-responsive">
+    <table class="table table-borderless table-hover table-dark-far table-sm">
+        <tbody>
+          <tr *ngFor="let track of topTracks">
+            <td>
+                <iframe [src]="'https://open.spotify.com/embed/track/' | domseguro : track.id" width="250" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </td>
+            <!-- <td><img [src]="track.album.images[2].url"  alt=""></td> -->
+            <td>{{track.name}}</td>
+            <td>{{track.album.name}}</td>
+            <td>{{track.duration_ms | date:'mm:ss'}}</td>
+          </tr>
+        </tbody>
+    </table>
+</div>
